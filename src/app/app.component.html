@@ -1,0 +1,64 @@
+<main class="main">
+  <div class="container">
+    <div class="title">
+      <h1>Last 10 Elements</h1>
+    </div>
+
+    <div class="content">
+      <div class="control">
+        <div class="input-group">
+          <label>Timer Interval (ms): </label>
+          <input [(ngModel)]="timerInterval" />
+        </div>
+        <div class="input-group">
+          <label>Array Size: </label>
+          <input [(ngModel)]="dataArraySize" />
+        </div>
+        <div class="input-group">
+          <label>Additional array IDs: </label>
+          <input [(ngModel)]="additionalIds" />
+        </div>
+        <button (click)="startPseudoSocket()">Change</button>
+      </div>
+
+      <div *ngIf="isLoading; else loaded" class="loader">Loading...</div>
+      <ng-template #loaded>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Int</th>
+              <th>Float</th>
+              <th>Color</th>
+              <th>Child</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of last10Items">
+              <td>{{ item.id }}</td>
+              <td>{{ item.int }}</td>
+              <td>{{ item.float }}</td>
+              <td [style.backgroundColor]="item.color">
+                {{ getColorName(item.color) }}
+              </td>
+              <td>
+                <table>
+                  <tr>
+                    <th>ID</th>
+                    <th>Color</th>
+                  </tr>
+                  <tr>
+                    <td>{{ item.child.id }}</td>
+                    <td [style.backgroundColor]="item.child.color">
+                      {{ getColorName(item.child.color) }}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </div>
+  </div>
+</main>
