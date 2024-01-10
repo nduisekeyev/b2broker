@@ -77,4 +77,5 @@ if (typeof Worker !== 'undefined') {
   };
   worker.postMessage('worker_init');
 } else {
+  console.error('Web Workers are not supported in this environment.');
 }
