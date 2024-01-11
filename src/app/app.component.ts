@@ -69,13 +69,3 @@ export class AppComponent implements OnInit {
     return colorMap[color] || 'Unknown';
   }
 }
-
-if (typeof Worker !== 'undefined') {
-  const worker = new Worker(new URL('./app.worker', import.meta.url));
-  worker.onmessage = (event) => {
-    console.log(`page got message: ${event.data}`);
-  };
-  worker.postMessage('worker_init');
-} else {
-  console.error('Web Workers are not supported in this environment.');
-}
