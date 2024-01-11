@@ -68,4 +68,8 @@ export class AppComponent implements OnInit {
 
     return colorMap[color] || 'Unknown';
   }
+
+  trackById(index: number, item): string {
+    return item.id;
+  }
 }
